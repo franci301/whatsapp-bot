@@ -1,7 +1,7 @@
 function DisplayRecords({key,name,DOB}){
     return(
         <div key={key}>
-            <h1>Display Records {name} {DOB}</h1>
+            <h1> {name} {DOB}</h1>
         </div>
     )
 }

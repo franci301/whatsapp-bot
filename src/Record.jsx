@@ -4,23 +4,23 @@ import DisplayRecords from './DisplayRecords';
 
 function Record(){
     const [records, setRecords] = useState([]);
+
     useEffect(() => {
-        get();
+        const getUsers = async() =>{
+            const data = await getAllRecords();
+            setRecords(data.map((doc) => ({...doc})))
+        }
+        getUsers();
     }, []);
-    async function get(){
-        await getAllRecords().then((res) =>{
-            setRecords(records => [...records,res]);
-            console.log(records);
-        });
-    }
+
+
     return (
         <div>
-            {records.length===0 ?  
-                records.map((dict)=>{
-                    <DisplayRecords key={1} name={dict.name} dob={dict.DOB}/>
-                })
-            : <h1>There are no records</h1>
-            }
+            {records.map((dict)=>{
+                return(
+                    <DisplayRecords key={dict.name} name={dict.name} DOB={dict.DOB}/>
+                    )
+            })}
         </div>
     )
 }
